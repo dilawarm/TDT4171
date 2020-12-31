@@ -3,7 +3,7 @@ _In which we consider what it means to think and whether artifacts could and sho
 ## Summary
 This chapter has addressed the following issues:
 * Philosophers use the term __weak AI__ for the hypothesis that machines could possibly behave intelligent, and __strong AI__ for the hypothesis that such machines would count as having actual minds (as opposed to simulated minds).
-* Alan Turing rejected the quesstion "Can machines think?" and replaced it with a behavioral test. He anticipated many objections to the possibility of thinking machines. Few AI researchers pay attention to the Turing Test, preferring to concentrate on their systems' performance on practical tasks, rather than the ability to imimtate humans.
+* Alan Turing rejected the question "Can machines think?" and replaced it with a behavioral test. He anticipated many objections to the possibility of thinking machines. Few AI researchers pay attention to the Turing Test, preferring to concentrate on their systems' performance on practical tasks, rather than the ability to imimtate humans.
 * There is general agreement in modern times that mental states are brain states.
 * Arguments for and against strong AI are inconclusive. Few mainstream AI researchers believe that anything significant hinges on the outcome of the debate.
 * Consciousness remains a mystery.
