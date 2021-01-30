@@ -301,7 +301,6 @@ def monty_hall():
     )
 
     bn = BayesianNetwork()
-    print(opened_by_host)
 
     bn.add_variable(chosen_by_guest)
     bn.add_variable(opened_by_host)
@@ -321,5 +320,5 @@ def monty_hall():
 
 
 if __name__ == "__main__":
-    problem3c()
+    # problem3c()
     monty_hall()
