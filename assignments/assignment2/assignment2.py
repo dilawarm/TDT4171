@@ -131,7 +131,7 @@ def problem1():
         print(
             "\n".join(
                 [
-                    f"m_1:{t+1} = {most_likely_sequence[t]} --> {[True, False][np.argmax(most_likely_sequence[t])]}"
+                    f"m_1:{t+1} = {most_likely_sequence[t]} --> argmax({most_likely_sequence[t]}) = {np.argmax(most_likely_sequence[t])} --> {[True, False][np.argmax(most_likely_sequence[t])]}"
                     for t in range(len(most_likely_sequence))
                 ]
             ),

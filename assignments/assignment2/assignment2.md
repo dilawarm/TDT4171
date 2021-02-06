@@ -26,7 +26,7 @@ P(X_4|e_1:4) = [0.75213858 0.24786142]
 P(X_5|e_1:5) = [0.33260527 0.66739473]
 P(X_6|e_1:6) = [0.73400126 0.26599874] 
 ```
-This operation is __filtering__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:t})$ for every observation in our evidence vector. Filtering gives us the belief state of a rational agent.
+This operation is __filtering__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:t})$ for every observation in our evidence vector. Filtering gives us the belief state of a rational agent. In this example, filtering will give us the probabilities for if we are going to find fish at day $t$ given the evidence up until day $t$.
 
 __c)__ Output from [assignment2.py](assignment2.py) after calculating
 $$\mathbf{P}\left(X_t|\mathbf{e}_{1:6}\right),\quad\text{for}\quad t=7,\dots,30\tag{2}$$
@@ -58,10 +58,10 @@ P(X_28|e_1:6) = [0.50000001 0.49999999]
 P(X_29|e_1:6) = [0.5 0.5]
 P(X_30|e_1:6) = [0.5 0.5]
 ```
-This operation is called __prediction__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:6})$ for $t$'s where we don't have any evidence. Prediction gives us an evaluation of possible action sequences.
+This operation is called __prediction__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:6})$ for $t$'s where we don't have any evidence. Prediction gives us an evaluation of possible action sequences. In this example, prediction gives us the probability for finding fish nearby from day 7 to 30 given our observations the first 6 days.
 As $t$ increases, the distribution converges to $\left[\frac{1}{2},\frac{1}{2}\right].$ In other words,
 $$\lim_{t\to\infty}{\mathbf{P}(X_t|\mathbf{e}_{1:6})}=\left[\frac{1}{2},\frac{1}{2}\right],$$
-which is the prior probability we started with.
+which is the prior probabilities we started with.
 
 __d)__ Output from [assignment2.py](assignment2.py) after calculating
 $$\mathbf{P}\left(X_t|\mathbf{e}_{1:6}\right),\quad\text{for}\quad t=0,\dots,5\tag{3}$$
@@ -75,18 +75,18 @@ P(X_2|e_1:6) = [0.81934685 0.18065315]
 P(X_1|e_1:6) = [0.85043729 0.14956271]
 P(X_0|e_1:6) = [0.65928968 0.34071032] 
 ```
-This operation is called __smoothing__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:6})$ for past $t$'s. Smoothing gives us better estimates of past states.
+This operation is called __smoothing__ because we are calculating $\mathbf{P}(X_t|\mathbf{e}_{1:6})$ for past $t$'s. Smoothing gives us better estimates of past states. In this example, smoothing will give us better estimates for finding fish nearby from day 0 to 5.
 
 __e)__ Output from [assignment2.py](assignment2.py) after calculating
 $$\argmax_{x_1,\dots,x_{t-1}}\mathbf{P}\left(x_1,\dots,x_{t-1},X_t|\mathbf{e}_{1:t}\right),\quad\text{for}\quad t=1,\dots,6\tag{4}$$
-```
+```{sh}
 Problem 1e)
 Calculating P(x_1,...,x_(t-1),X_t|e_1:t) for t = 1,...,6:
-m_1:1 = [0.78947368 0.21052632] --> True
-m_1:2 = [0.47368421 0.04736842] --> True
-m_1:3 = [0.09473684 0.11368421] --> False
-m_1:4 = [0.05684211 0.01818947] --> True
-m_1:5 = [0.01136842 0.01364211] --> False
-m_1:6 = [0.00682105 0.00218274] --> True 
+m_1:1 = [0.78947368 0.21052632] --> argmax([0.78947368 0.21052632]) = 0 --> True
+m_1:2 = [0.47368421 0.04736842] --> argmax([0.47368421 0.04736842]) = 0 --> True
+m_1:3 = [0.09473684 0.11368421] --> argmax([0.09473684 0.11368421]) = 1 --> False
+m_1:4 = [0.05684211 0.01818947] --> argmax([0.05684211 0.01818947]) = 0 --> True
+m_1:5 = [0.01136842 0.01364211] --> argmax([0.01136842 0.01364211]) = 1 --> False
+m_1:6 = [0.00682105 0.00218274] --> argmax([0.00682105 0.00218274]) = 0 --> True
 ```
-Here $m_{1:t}(i)$ gives the probability of the **most likely sequence** to state $i$. The most likely sequence is ...
+Here $m_{1:t}(i)$ gives the probability of the **most likely sequence** to state $i$. The most likely sequence tells us which states are most probable given our evidence. In this example, the most likely sequence tells us the most likely occurrences of fish being nearby the first 6 days given our evidence.
