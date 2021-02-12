@@ -35,7 +35,7 @@ def prediction(evidence, prior, sensor_model, transition_model, start_t, end_t):
     last_filter = filtering(evidence, prior, sensor_model, transition_model)[-1]
     predictions = [last_filter]
     for t in range(end_t - start_t + 1):
-        predictions.append(normalize(np.matmul(transition_model.T, predictions[t])))
+        predictions.append(normalize(np.matmul(transition_model, predictions[t])))
     return predictions[1:]
 
 
@@ -62,8 +62,6 @@ def viterbi(evidence, prior, sensor_model, transition_model):
         else:
             sensor = identity_vec - sensor_model
         dist = sensor * np.max(transition_model * most_likely_sequence[i], axis=1)
-        if i == 0:
-            dist = normalize(dist)
         most_likely_sequence.append(dist)
 
     return most_likely_sequence[1:]
@@ -71,10 +69,9 @@ def viterbi(evidence, prior, sensor_model, transition_model):
 
 def problem1():
     evidence = [True, True, False, True, False, True]
-    # evidence = [True, True, False, True, True]
     prior = np.array([0.5, 0.5])
-    sensor_model = np.array([[0.75, 0.0], [0.0, 0.2]])  # 0.9 = 0.75
-    transition_model = np.array([[0.8, 0.3], [0.3, 0.8]])  # 0.7 = 0.8
+    sensor_model = np.array([[0.75, 0.0], [0.0, 0.2]])
+    transition_model = np.array([[0.8, 0.3], [0.2, 0.7]])
 
     def problem1b():
         start_t, end_t = 1, 6
