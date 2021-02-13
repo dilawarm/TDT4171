@@ -28,11 +28,14 @@ def filtering(evidence, prior, sensor_model_1, sensor_model_2, transition_model)
     filters = [prior]
     for i in range(len(evidence)):
         filters.append(
-            forward(
-                get_sensor_model(evidence, sensor_model_1, i, 0),
-                get_sensor_model(evidence, sensor_model_2, i, 1),
-                transition_model,
-                filters[i],
+            np.round(
+                forward(
+                    get_sensor_model(evidence, sensor_model_1, i, 0),
+                    get_sensor_model(evidence, sensor_model_2, i, 1),
+                    transition_model,
+                    filters[i],
+                ),
+                4,
             )
         )
     return filters[1:]
@@ -57,7 +60,9 @@ def prediction(
     else:
         predictions = [converged]
     for t in range(end_t - start_t + 1):
-        predictions.append(normalize(np.matmul(transition_model, predictions[t])))
+        predictions.append(
+            np.round(normalize(np.matmul(transition_model, predictions[t])), 4)
+        )
     return predictions[1:]
 
 
@@ -67,31 +72,17 @@ def smoothing(evidence, prior, sensor_model_1, sensor_model_2, transition_model)
     )
     smoothings = []
     back = np.array([1.0, 1.0])
-    for i in range(len(filters) - 2, -1, -1):
-        smoothings.append(normalize(filters[i] * back))
+    print(back)
+    for i in range(len(filters) - 1, -1, -1):
+        smoothings.append(np.round(normalize(filters[i] * back), 4))
         back = backward(
             get_sensor_model(evidence, sensor_model_1, i - 1, 0),
             get_sensor_model(evidence, sensor_model_2, i - 1, 1),
             transition_model,
             back,
         )
+        print(np.round(back, 4))
     return smoothings
-
-
-def viterbi(evidence, prior, sensor_model, transition_model):
-    sensor_model = np.array([sensor_model[0][0], sensor_model[1][1]])
-    most_likely_sequence = [prior]
-    identity_vec = np.array([1.0, 1.0])
-    sensor = None
-    for i in range(len(evidence)):
-        if evidence[i]:
-            sensor = sensor_model
-        else:
-            sensor = identity_vec - sensor_model
-        dist = sensor * np.max(transition_model * most_likely_sequence[i], axis=1)
-        most_likely_sequence.append(dist)
-
-    return most_likely_sequence[1:]
 
 
 def problem2():
@@ -176,6 +167,9 @@ def problem2():
     problem1c()
     problem1d()
     problem1e()
+
+    res = np.matmul(transition_model, np.array([0.6, 0.4]))
+    print(1 / res.sum())
 
 
 if __name__ == "__main__":

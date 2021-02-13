@@ -43,7 +43,7 @@ def smoothing(evidence, prior, sensor_model, transition_model):
     filters = [prior] + filtering(evidence, prior, sensor_model, transition_model)
     smoothings = []
     back = np.array([1.0, 1.0])
-    for i in range(len(filters) - 2, -1, -1):
+    for i in range(len(filters) - 1, -1, -1):
         smoothings.append(normalize(filters[i] * back))
         back = backward(
             get_sensor_model(evidence, sensor_model, i - 1), transition_model, back
@@ -62,6 +62,7 @@ def viterbi(evidence, prior, sensor_model, transition_model):
         else:
             sensor = identity_vec - sensor_model
         dist = sensor * np.max(transition_model * most_likely_sequence[i], axis=1)
+        dist = normalize(dist) if i == 0 else dist
         most_likely_sequence.append(dist)
 
     return most_likely_sequence[1:]
@@ -113,7 +114,7 @@ def problem1():
             "\n".join(
                 [
                     f"P(X_{t}|e_1:6) = {smoothings[t]}"
-                    for t in range(len(smoothings) - 1, -1, -1)
+                    for t in range(len(smoothings) - 2, -1, -1)
                 ]
             ),
             "\n",

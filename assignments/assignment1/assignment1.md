@@ -1,4 +1,4 @@
-$\renewcommand{\indep}{\perp \!\!\! \perp}$
+$\newcommand{\indep}{\perp \!\!\! \perp}$
 # TDT4171 - Artificial Intelligence Methods
 ## Uncertainty, Bayesian networks
 ### Exercise 1
