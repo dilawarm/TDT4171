@@ -11,7 +11,7 @@ $$\begin{aligned}
 \mathbb{E}U(b)&=\sum_{p}{P(p|b)\cdot U(b, p)}\\
 \mathbb{E}U(\neg b)&=\sum_{p}{P(p|\neg b)\cdot U(\neg b, p)},
 \end{aligned}$$
-where $b$ and $p$ are the realizations of $P$ and $B$, respectively, and $U(b, p)=U_1(b)+U_2(p)$. We are using $P(p|b)$ here because the result of buying/not buying the book is passing/not passing the course.
+where $b$ and $p$ are the realizations of $B$ and $P$, respectively, and $U(b, p)=U_1(b)+U_2(p)$. We are using $P(p|b)$ here because the result of buying/not buying the book is passing/not passing the course.
 
 Let's calculate $P(p|b)$ and $P(p|\neg b)$ using the topology of the decision network:
 $$\begin{aligned}
