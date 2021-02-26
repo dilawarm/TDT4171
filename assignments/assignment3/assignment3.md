@@ -32,3 +32,4 @@ $$\begin{aligned}
 &=0.525\cdot(0+2100)+(1-0.525)\cdot(0+0)=\underline{\underline{1102.5}}\\
 \end{aligned}$$
 Since $\mathbb{E}U(b)>\mathbb{E}U(\neg b)$, the MEU principle tells us that Geir should buy the book.
+### Problem 2

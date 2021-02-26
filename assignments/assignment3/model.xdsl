@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<decision id="Vacation">
+			<state id="Norway" />
+			<state id="Japan" />
+		</decision>
+		<cpt id="LongTravel">
+			<state id="True" />
+			<state id="False" />
+			<parents>Vacation</parents>
+			<probabilities>0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="Language_Skills">
+			<state id="Good" />
+			<state id="Bad" />
+			<probabilities>0.001 0.999</probabilities>
+		</cpt>
+		<cpt id="PLS">
+			<state id="Good" />
+			<state id="Bad" />
+			<parents>Language_Skills</parents>
+			<probabilities>0.8 0.2 0.3 0.7</probabilities>
+		</cpt>
+		<cpt id="Weather">
+			<state id="Good" />
+			<state id="Bad" />
+			<parents>Vacation</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Expensive">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Vacation</parents>
+			<probabilities>0.25 0.75 0.8 0.2</probabilities>
+		</cpt>
+		<cpt id="Food">
+			<state id="Good" />
+			<state id="Bad" />
+			<parents>Expensive</parents>
+			<probabilities>0.6 0.4 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="New_Friends">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Language_Skills</parents>
+			<probabilities>0.8 0.2 0.6 0.4</probabilities>
+		</cpt>
+		<cpt id="Hiking">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Weather</parents>
+			<probabilities>0.85 0.15 0.1 0.9</probabilities>
+		</cpt>
+		<utility id="Adventure">
+			<parents>Weather Food New_Friends Hiking</parents>
+			<utilities>1000 1000 900 900 90 80 70 70 400 600 300 400 80 60 40 0</utilities>
+		</utility>
+		<cpt id="Vaccination">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Vacation</parents>
+			<probabilities>0 1 1 0</probabilities>
+		</cpt>
+		<cpt id="Sick">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Vaccination Food</parents>
+			<probabilities>0.01 0.99 0.05 0.95 0.2 0.8 0.9 0.1</probabilities>
+		</cpt>
+		<cpt id="Tired">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>LongTravel</parents>
+			<probabilities>0.9 0.1 0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="Geography_Skills">
+			<state id="Good" />
+			<state id="Bad" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="Lost">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Geography_Skills</parents>
+			<probabilities>0.01 0.99 0.3 0.7</probabilities>
+		</cpt>
+		<utility id="Stress">
+			<parents>Sick Tired Expensive Lost</parents>
+			<utilities>1000 500 900 400 800 300 700 400 800 200 800 600 800 100 750 0</utilities>
+		</utility>
+		<mau id="Utility">
+			<parents>Adventure Stress</parents>
+			<weights>1 -1</weights>
+		</mau>
+		<cpt id="PGS">
+			<state id="Good" />
+			<state id="Bad" />
+			<parents>Geography_Skills</parents>
+			<probabilities>0.9 0.1 0.1 0.9</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.5590.0" name="Network1" faultnameformat="nodestate">
+			<node id="Vacation">
+				<name>Vacation</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>379 526 498 574</position>
+				<barchart active="true" />
+			</node>
+			<node id="LongTravel">
+				<name>Long Travel</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>424 689 497 736</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Utility">
+				<name>Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>743 411 808 459</position>
+				<barchart active="true" />
+			</node>
+			<node id="Sick">
+				<name>Sick</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>524 479 582 519</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Adventure">
+				<name>Adventure</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>621 261 716 301</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Stress">
+				<name>Stress</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>701 591 777 637</position>
+				<barchart active="true" />
+			</node>
+			<node id="Tired">
+				<name>Tired</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>592 716 646 751</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Food">
+				<name>Food</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>611 407 663 439</position>
+				<barchart active="true" />
+			</node>
+			<node id="Expensive">
+				<name>Expensive</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>565 578 629 618</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Weather">
+				<name>Weather</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>456 335 527 391</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="PLS">
+				<name>Percieved Language Skills</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1053 152 1172 206</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Language_Skills">
+				<name>Language Skills</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>822 114 908 167</position>
+				<barchart active="true" />
+			</node>
+			<node id="Vaccination">
+				<name>Vaccination</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>318 463 413 498</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="New_Friends">
+				<name>New Friends</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>622 146 697 192</position>
+				<barchart active="true" />
+			</node>
+			<node id="PGS">
+				<name>Percieved Geography Skills</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1097 469 1198 523</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Geography_Skills">
+				<name>Geography Skills</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>965 376 1056 432</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Lost">
+				<name>Lost</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>853 287 916 319</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Hiking">
+				<name>Hiking</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>492 206 553 244</position>
+				<barchart active="true" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
