@@ -2,7 +2,6 @@ import pandas as pd
 import math
 import pydot
 import uuid
-import random
 
 Y = "Survived"
 
@@ -84,7 +83,7 @@ def add_nodes(dictionary, graph, parent=None):
         name = str(node)
         if parent:
 
-            from_name = parent.get_name().replace('"', "") + "_" + str(node)
+            from_name = parent.get_name().replace('"', "") + "_" + name
             to_node = pydot.Node(from_name, label=name)
             graph.add_node(to_node)
             graph.add_edge(pydot.Edge(parent, to_node))
