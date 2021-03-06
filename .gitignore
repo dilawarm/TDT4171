@@ -140,3 +140,4 @@ cython_debug/
 
 resources/
 *.pdf
+.vscode
