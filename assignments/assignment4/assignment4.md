@@ -8,7 +8,7 @@ __a)__ See [assignment4.py](assignment4.py) for the implementation of the decisi
 * `Parch`
 * `Embarked`
 
-One could argue that `SibSp` and `Parch` are continious variables, but these variables only have 4 discrete values.
+One could argue that `SibSp` and `Parch` are continious variables, but these variables only have 4 discrete values, and since I consider `Pclas` as a categorical variable, it is natural that I also consider these variables as categorical.
 
 Thus, the continious variables in the dataset are:
 * `Age`
