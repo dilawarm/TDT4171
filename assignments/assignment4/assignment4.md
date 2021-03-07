@@ -34,3 +34,25 @@ Here are some changes for how we could improve the dataset:
 * Use PCA (Principal Component Analysis) to remove features which explain little variability in the data.
 * Use some of the techniques discussed in __Problem 2__ to fill in missing values. These may have important information to make the model better.
 * This may not improve performance, but one can also use pruning to remove redundant or non-important parts of the decision tree to make the model more _interpretable_.
+
+### Problem 2 - Missing Values
+
+__Method I__
+
+One way to handle missing data is to fill the missing values for an attribute. This can be done by for example using regression on the column with missing data, and predict the missing values. Here is some pseudocode for how I would do it
+
+```
+X <-- data column with missing values
+X_train <-- data column without missing values
+regression_model <-- fit(X_train)
+X_regression <-- regression_model(X)
+X_regression <-- data column where missing values have been predicted
+```
+
+The main advantage here is that we might get reasonable values for the missing values, and may get a better decision tree in the end. The disadvantage for this approach is that it won't work for categorical variables. The assumption here is that the values are continious, and that they follow a certain pattern (for example linear). If that was not the case, regression would be difficult to use here.
+
+__Method II__
+
+Another way to handle missing data is to use K-nearest-neighbours to find similar datapoints to the ones where we have a missing value. Then we can set the missing value equal to the value in the neighbourhood. In the Titanic dataset, if two people have almost the same attributes, but one of them is missing `Age`, we could give them the same age. 
+
+The main advantage here is the same as above, that we might get a better model. Another advantage is that this method will also work for categorical variables (we might have to encode those variables so that we can measure _similarity_). The disadvantage here is that we might not get good neighbourhoods. This can lead us to fill in bad values for the missing values, which can give us a poor model. The assumption for this approach is that we assume that our datapoints are similar to other datapoints. Otherwise, the KNN algorithm will set the missing value equal to the nearest datapoint, which in reality can be far away.
