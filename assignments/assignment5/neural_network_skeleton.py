@@ -97,11 +97,11 @@ class NeuralNetwork:
 
                 weights_gradient = [
                     None for weight in self.weights
-                ]  # Initializing weight gradients for each layer which are going to be used to update the random weights in the network.
+                ]  # Initializing weight gradients for each layer which are going to be used to update the weights in the network.
 
                 biases_gradient = [
                     None for bias in self.biases
-                ]  # Initializing bias gradients for each layer which are going to be used to update the random weights in the network.
+                ]  # Initializing bias gradients for each layer which are going to be used to update the biases in the network.
 
                 activation = np.expand_dims(x, axis=1)
                 activations = [
@@ -121,7 +121,7 @@ class NeuralNetwork:
 
                 """
                 Calculating the error delta from output layer to be propagated backwards in the network. It is calculated
-                by taking the derivative of the loss function, whiich in our case is MSE, and multiply with derivate of
+                by taking the derivative of the loss function, which in our case is MSE, and multiply with derivate of
                 the sigmoid function applied on the value that entered the last layer of the network.
                 """
 
@@ -133,12 +133,10 @@ class NeuralNetwork:
                     error_delta, activations[-2].T
                 )  # Setting error delta multiplied with the second last layer activations as weight gradient for last layer.
 
-                biases_gradient[
-                    -1
-                ] = error_delta  # Setting error delta as bias gradient for last layer.
+                biases_gradient[-1] = error_delta  # Setting error delta as bias gradient for last layer.
 
                 """
-                This for-loop does the same as the code from line 128 - 138, but for each layer in the network.
+                This for-loop does the same as the code from line 128 - 136, but for each layer in the network.
                 Thus, the error is propagated backwards in the network, and the gradients for each layer are set.
                 """
                 for layer in range(2, self.total_layers):
