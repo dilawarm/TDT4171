@@ -131,11 +131,11 @@ class NeuralNetwork:
 
                 weights_gradient[-1] = np.dot(
                     error_delta, activations[-2].T
-                )  # Setting error delta multiplied with the second last layer activations as weight gradient for last layer by
+                )  # Setting error delta multiplied with the second last layer activations as weight gradient for last layer.
 
                 biases_gradient[
                     -1
-                ] = error_delta  # Setting error delta as bias gradient for last layer
+                ] = error_delta  # Setting error delta as bias gradient for last layer.
 
                 """
                 This for-loop does the same as the code from line 128 - 138, but for each layer in the network.
