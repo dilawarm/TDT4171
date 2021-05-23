@@ -160,12 +160,12 @@ class Model:
 
 def get_problem1_model() -> Model:
     """Define and return the HMM"""
-    alpha = 0.5
+    alpha = 0.6
 
-    beta_1 = 0.8
-    beta_0 = 0.2
+    beta_1 = 0.7
+    beta_0 = 0.4
 
-    gamma_1 = 0.7
+    gamma_1 = 0.8
     gamma_0 = 0.3
 
     return Model(
